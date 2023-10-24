@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-10-24T06:41:49.610Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="M71StPKmCcfaH40jdlnL" version="22.0.6" type="github" pages="7">
+<mxfile host="app.diagrams.net" modified="2023-10-24T07:29:03.439Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="nZs905PtV6mVmcSrMd2a" version="22.0.6" type="github" pages="7">
   <diagram name="第 1 页" id="T8WbNvqm9_tApNMJxvMl">
     <mxGraphModel dx="1120" dy="484" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -784,21 +784,27 @@
     </mxGraphModel>
   </diagram>
   <diagram id="T9dcfPZtov14zepHvL1p" name="第 6 页">
-    <mxGraphModel dx="1120" dy="484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="788" dy="315" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="RgL__0ddFc8URINF0U-F-1" value="" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="380" y="600" width="120" height="80" as="geometry" />
+        <mxCell id="RgL__0ddFc8URINF0U-F-1" value="班级作业收集系统" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="540" width="170" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="RgL__0ddFc8URINF0U-F-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="140" y="610" width="120" height="60" as="geometry" />
+        <mxCell id="RgL__0ddFc8URINF0U-F-2" value="学生" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="540" width="120" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="RgL__0ddFc8URINF0U-F-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="380" y="770" width="120" height="60" as="geometry" />
+        <mxCell id="RgL__0ddFc8URINF0U-F-3" value="系统管理员" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="385" y="750" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="RgL__0ddFc8URINF0U-F-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="650" y="610" width="120" height="60" as="geometry" />
+        <mxCell id="RgL__0ddFc8URINF0U-F-4" value="学习委员" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="RgL__0ddFc8URINF0U-F-7" value="提交作业" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="195" y="538" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RgL__0ddFc8URINF0U-F-13" value="系统邮件催收作业" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="170" y="630" width="120" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
