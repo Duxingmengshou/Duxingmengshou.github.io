@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-12-16T16:38:45.997Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="bDU0jdXINkgc_KCdSOD1" version="22.1.11" type="github" pages="15">
+<mxfile host="app.diagrams.net" modified="2023-12-16T17:45:20.183Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" etag="EIDeJTuvOQ3nG2hdTkrx" version="22.1.11" type="github" pages="15">
   <diagram name="第 1 页" id="T8WbNvqm9_tApNMJxvMl">
     <mxGraphModel dx="880" dy="529" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1961,7 +1961,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="k-LpFWMUiX5wPb0wr3rB" name="第 12 页">
-    <mxGraphModel dx="1707" dy="529" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1436" dy="547" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2375,6 +2375,108 @@
         </mxCell>
         <mxCell id="p3Aq_I0aXc_ngmbw9JAy-19" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Mapper层N-S图&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="312.5" y="1570" width="225" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-20" value="重命名作业处理器" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="895" y="1315" width="315" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-21" value="查询作业所属课程命名规范以及提交人信息" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="895" y="1375" width="315" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-22" value="根据规范和提交人信息生成新作业名称" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="895" y="1435" width="315" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-23" value="更新作业名称" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="895" y="1495" width="315" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-24" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;重命名作业功能N-S图&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="917.5" y="1580" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-54" value="群发邮件处理器" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1088" y="1756" width="315" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-55" value="检查作业是否提交" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1088" y="1816" width="315" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-56" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1088" y="1876" width="315" height="236" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-57" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;邮件催收功能N-S图&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1110.5" y="2150" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-58" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1088" y="1876" width="150" height="236" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-59" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1088" y="1876" width="150" height="107" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-60" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1238" y="1876" width="166" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-61" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1238" y="1936" width="81" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-62" value="提示作业已经提交" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1107" y="1913" width="103" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-63" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="p3Aq_I0aXc_ngmbw9JAy-55">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1159" y="1876" as="sourcePoint" />
+            <mxPoint x="1448" y="2044" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-64" value="" style="endArrow=none;html=1;rounded=0;entryX=1;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="p3Aq_I0aXc_ngmbw9JAy-60" target="p3Aq_I0aXc_ngmbw9JAy-55">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1398" y="2094" as="sourcePoint" />
+            <mxPoint x="1448" y="2044" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-65" value="是" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1063" y="1840" width="103" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-66" value="否" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1327" y="1846" width="103" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-67" value="退出模块" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1110.5" y="2039" width="103" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-68" value="检查邮箱" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1269.5" y="1894" width="103" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-69" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="p3Aq_I0aXc_ngmbw9JAy-60" target="p3Aq_I0aXc_ngmbw9JAy-60">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1398" y="2094" as="sourcePoint" />
+            <mxPoint x="1448" y="2044" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-70" value="是" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1197" y="1906" width="103" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-71" value="" style="endArrow=none;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="p3Aq_I0aXc_ngmbw9JAy-60" target="p3Aq_I0aXc_ngmbw9JAy-66">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1398" y="2094" as="sourcePoint" />
+            <mxPoint x="1448" y="2044" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-72" value="否" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1337" y="1906" width="103" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-73" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1.015;entryY=0.631;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="p3Aq_I0aXc_ngmbw9JAy-61" target="p3Aq_I0aXc_ngmbw9JAy-56">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1398" y="2094" as="sourcePoint" />
+            <mxPoint x="1448" y="2044" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-74" value="发送催收邮件" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="1970" width="79" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-75" value="退出模块" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1238" y="2064" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-76" value="提示邮箱为空" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1325" y="1973" width="79" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p3Aq_I0aXc_ngmbw9JAy-77" value="退出模块" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="1324" y="2064" width="79" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
