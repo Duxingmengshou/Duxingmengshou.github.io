@@ -1,3 +1,10 @@
+---
+title: 'mutex（互斥锁）与condition_variable（条件变量）'
+date: 2023-12-14
+permalink: /posts/2023/12/mutex（互斥锁）与condition_variable（条件变量）/
+tags:
+  - C++
+---
 # mutex（互斥锁）与condition_variable（条件变量）
 
 ## 无法避免的同步问题
