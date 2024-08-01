@@ -2,3 +2,9 @@
 main:
   - title: "个人博客"
     url: /year-archive/
+  
+  - title: "页面存档"
+    url: /page-archive/
+
+  - title: "隐私政策"
+    url: /terms/
