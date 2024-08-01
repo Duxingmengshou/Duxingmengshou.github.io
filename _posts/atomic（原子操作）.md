@@ -1,0 +1,296 @@
+# atomic（原子操作）
+
+原子操作需要硬件支持，同时也与类型结构有关，使用`std::atomic<T>::is_lock_free`来检查原子类型是否支持原子操作。
+
+```C++
+#include<atomic>
+#include<iostream>
+
+struct A {//64位系统
+    char a, b, c, d;
+    int _i;
+};
+
+int main() {
+    std::atomic<A> a;
+    std::cout << std::boolalpha << a.is_lock_free() << std::endl;
+    std::cout << std::atomic<int>::is_always_lock_free << std::endl;
+    return 0;
+}
+/*
+结果：
+true
+true
+*/
+```
+
+在互斥量和条件变量中实现读者写者问题时，引入锁的原因就是多线程可能引发读时写的问题，那么如果读和写的操作都是一步完成的，那么也就不需要考虑锁的引入了，这种能一步完成的操作就是原子操作。
+
+## 原子类型
+
+- **`std::atomic<bool>`**: 用于原子操作的布尔类型。
+- **`std::atomic<int>`**: 用于原子操作的整数类型（也有 `std::atomic<short>`, `std::atomic<long>` 等）。
+- **`std::atomic<unsigned int>`**: 用于原子操作的无符号整数类型。
+- **`std::atomic<char>`**: 用于原子操作的字符类型。
+- **`std::atomic<void*>`**: 用于原子操作的指针类型。
+- **`std::atomic<T>`**: 用于自定义类型。
+- **`std::atomic_flag`**: 最简单的原子类型，只能设置和清除标志。
+
+```C++
+//基本操作
+#include <atomic>
+#include <iostream>
+
+void basicAtomicOperations() {
+    std::atomic<int> atomicInt(0);
+
+    // 存储操作
+    atomicInt.store(10);
+    std::cout << "Stored: " << atomicInt.load() << std::endl; // 输出10
+
+    // 加载操作
+    int value = atomicInt.load();
+    std::cout << "Loaded: " << value << std::endl; // 输出10
+
+    // 交换操作
+    int exchangedValue = atomicInt.exchange(20);
+    std::cout << "Exchanged: " << exchangedValue << " with " << atomicInt.load() << std::endl; // 输出10, 20
+
+    // 比较并交换
+    int expected = 20;
+    bool isSwapped = atomicInt.compare_exchange_strong(expected, 30);
+    std::cout << "Compare and Swap successful: " << std::boolalpha << isSwapped << ", Current value: "
+              << atomicInt.load() << std::endl; // true, 30
+
+    // 加减操作
+    int addedValue = atomicInt.fetch_add(5);
+    std::cout << "Fetch and Add: " << addedValue << " (after add: " << atomicInt.load() << ")" << std::endl; // 输出30, 35
+
+    int subtractedValue = atomicInt.fetch_sub(5);
+    std::cout << "Fetch and Subtract: " << subtractedValue << " (after subtract: " << atomicInt.load() << ")"
+              << std::endl; // 输出35, 3
+}
+
+int main()
+{
+    basicAtomicOperations();
+}
+```
+
+```C++
+//线程比赛
+#include <iostream>
+#include <atomic>
+#include <thread>
+#include <vector>
+
+std::atomic<bool> ready(false);    // can be checked without being set
+std::atomic_flag winner = ATOMIC_FLAG_INIT;    // always set when checked
+
+void count1m(int id) {
+    while (!ready) {
+        std::this_thread::yield();
+    } // 等待主线程中设置 ready 为 true.
+
+    for (int i = 0; i < 1000000; ++i) {
+    } // 计数.
+
+    // 如果某个线程率先执行完上面的计数过程，则输出自己的 ID.
+    // 此后其他线程执行 test_and_set 是 if 语句判断为 false，
+    // 因此不会输出自身 ID.
+    if (!winner.test_and_set()) {
+        std::cout << "thread #" << id << " won!\n";
+    }
+};
+
+int main() {
+    std::vector<std::thread> threads;
+    std::cout << "spawning 10 threads that count to 1 million...\n";
+    for (int i = 1; i <= 5; ++i)
+        threads.push_back(std::thread(count1m, i));
+    ready = true;
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    }
+    return 0;
+}
+```
+
+# 内存序列
+
+- **`std::memory_order_relaxed`**: 操作之间不保证顺序，仅保证原子性。
+- **`std::memory_order_consume`**: 消费依赖性操作。
+- **`std::memory_order_acquire`**: 获取操作，保证在该操作前的读写不会被重排序到后面。
+- **`std::memory_order_release`**: 释放操作，保证在该操作后的读写不会被重排序到前面。
+- **`std::memory_order_acq_rel`**: 获取和释放操作的结合。
+- **`std::memory_order_seq_cst`**: 顺序一致性，提供最强的同步保证（也是默认值）。
+
+```C++
+//经典例子，多线程计数
+#include <iostream>
+#include <atomic>
+#include <thread>
+#include <vector>
+
+std::atomic<int> counter(0);
+
+void incrementCounter(int numIncrements) {
+    for (int i = 0; i < numIncrements; ++i) {
+        counter.fetch_add(1, std::memory_order_relaxed);
+    }
+}
+
+int main() {
+    const int numThreads = 8;
+    const int numIncrements = 100000;
+
+    std::vector<std::thread> threads;
+    for (int i = 0; i < numThreads; ++i) {
+        threads.emplace_back(incrementCounter, numIncrements);
+    }
+
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        std::cout << "Final counter value: " << counter.load() << std::endl;
+    }
+    return 0;
+}
+```
+
+```C++
+//简单自旋锁实现
+#include <atomic>
+#include <thread>
+#include <iostream>
+
+class SpinLock {
+private:
+    std::atomic_flag lockFlag = ATOMIC_FLAG_INIT;
+
+public:
+    void lock() {
+        while (lockFlag.test_and_set(std::memory_order_acquire)) {}
+    }
+
+    void unlock() {
+        lockFlag.clear(std::memory_order_release);
+    }
+};
+
+SpinLock spinLock;
+
+void criticalSection() {
+    spinLock.lock();
+    std::cout << "Thread " << std::this_thread::get_id() << " in critical section." << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+    spinLock.unlock();
+}
+
+int main() {
+    std::thread t1(criticalSection);
+    std::thread t2(criticalSection);
+
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    }
+
+    return 0;
+}
+/*
+自旋锁已经被其他线程占用时，该线程不会被挂起，而是在不断的消耗CPU的时间，不停的试图获取自旋锁。
+互斥量，当某线程无法获取互斥量时，该线程会被直接挂起，该线程不再消耗CPU时间，当其他线程释放互斥量后，操作系统会激活那个被挂起的线程，让其投入运行。
+还记得上次实现的shared_mutex的吗，里面没有使用锁，用了两个bool变量，就是简单实现的自旋锁，但是那个bool没有设置位原子类型。
+*/
+```
+
+```C++
+//实现无锁安全队列
+#include <iostream>
+#include <list>
+#include <memory>
+#include <atomic>
+#include <thread>
+#include <vector>
+
+template<typename T>
+class LockFreeQueue {
+private:
+    struct Node {
+        T value;
+
+        explicit Node(T val) : value(val) {}
+    };
+
+    std::list<std::shared_ptr<Node>> queue;
+    std::atomic_flag lock = ATOMIC_FLAG_INIT;
+
+    void spin_lock() {
+        while (lock.test_and_set(std::memory_order_acquire)) {}
+    }
+
+    void spin_unlock() {
+        lock.clear(std::memory_order_release);
+    }
+
+public:
+    LockFreeQueue() = default;
+
+    ~LockFreeQueue() = default;
+
+    void enqueue(T value) {
+        auto newNode = std::make_shared<Node>(value);
+        spin_lock();
+        queue.push_back(newNode);
+        spin_unlock();
+    }
+
+    std::shared_ptr<T> dequeue() {
+        spin_lock();
+        if (queue.empty()) {
+            spin_unlock();
+            return nullptr;  // Queue is empty
+        }
+        auto node = queue.front();
+        queue.pop_front();
+        spin_unlock();
+        return std::make_shared<T>(node->value);
+    }
+};
+
+int main() {
+    LockFreeQueue<int> queue;
+
+    std::vector<std::thread> producers;
+    std::vector<std::thread> consumers;
+
+    // Start producer threads
+    for (int i = 0; i < 4; ++i) {
+        producers.emplace_back([&queue, i]() {
+            for (int j = 0; j < 10; ++j) {
+                queue.enqueue(i * 10 + j);
+                std::cout << "Produced: " << i * 10 + j << std::endl;
+            }
+        });
+    }
+
+    // Start consumer threads
+    for (int i = 0; i < 4; ++i) {
+        consumers.emplace_back([&queue]() {
+            for (int j = 0; j < 10; ++j) {
+                auto value = queue.dequeue();
+                if (value) {
+                    std::cout << "Consumed: " << *value << std::endl;
+                } else {
+                    std::cout << "Queue is empty." << std::endl;
+                }
+            }
+        });
+    }
+
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    }
+    return 0;
+}
+//性能要求高的平台用，要不然没什么用
+```

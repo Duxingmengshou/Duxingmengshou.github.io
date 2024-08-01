@@ -1,0 +1,2254 @@
+# 关键字（C++）
+
+### 标准C++关键字（C++20，93个）
+
+- **alignas**: 用于指定类型或变量的对齐要求。
+- **alignof**: 返回类型的对齐要求。
+- **and**: 逻辑与运算符的替代表示（等价于`&&`）。
+- **and_eq**: 按位与赋值运算符的替代表示（等价于`&=`）。
+- **asm**: 内嵌汇编代码。
+- **auto**: 自动类型推导或声明自动存储类型。
+- **bitand**: 按位与运算符的替代表示（等价于`&`）。
+- **bitor**: 按位或运算符的替代表示（等价于`|`）。
+- **bool**: 布尔类型。
+- **break**: 退出最近的循环或switch语句。
+- **case**: switch语句中的分支标签。
+- **catch**: 捕获异常。
+- **char**: 字符类型。
+- **char8_t**: 8位字符类型（用于UTF-8编码）。
+- **char16_t**: 16位字符类型（用于UTF-16编码）。
+- **char32_t**: 32位字符类型（用于UTF-32编码）。
+- **class**: 定义类类型。
+- **compl**: 按位补运算符的替代表示（等价于`~`）。
+- **concept**: 定义概念，用于模板编程（C++20）。
+- **const**: 声明常量或常量限定符。
+- **const_cast**: 移除或添加const限定符。
+- **consteval**: 编译时常量计算（C++20）。
+- **constexpr**: 编译时常量表达式。
+- **constinit**: 确保变量在编译时初始化（C++20）。
+- **continue**: 跳过当前循环迭代并开始下一次迭代。
+- **co_await**: 等待一个协程任务（C++20）。
+- **co_return**: 从协程返回（C++20）。
+- **co_yield**: 生成协程值（C++20）。
+- **decltype**: 推导表达式的类型。
+- **default**: 指定默认的构造函数、析构函数、赋值操作或switch的默认分支。
+- **delete**: 删除对象或禁用特殊成员函数。
+- **do**: 先执行后测试的循环。
+- **double**: 双精度浮点数类型。
+- **dynamic_cast**: 运行时类型识别和转换。
+- **else**: if语句中的可选分支。
+- **enum**: 定义枚举类型。
+- **explicit**: 显式构造函数或转换操作符。
+- **export**: 模块导出（C++20）或模板导出（C++11废弃）。
+- **extern**: 声明外部变量或函数。
+- **false**: 布尔假值。
+- **float**: 单精度浮点数类型。
+- **for**: 带初始化、条件和迭代的循环。
+- **friend**: 声明友元类或友元函数。
+- **goto**: 无条件跳转。
+- **if**: 条件语句。
+- **inline**: 内联函数。
+- **int**: 整数类型。
+- **long**: 长整数类型。
+- **mutable**: 允许常量成员变量在const成员函数中被修改。
+- **namespace**: 定义命名空间。
+- **new**: 分配动态内存。
+- **noexcept**: 指定函数不抛出异常。
+- **not**: 逻辑非运算符的替代表示（等价于`!`）。
+- **not_eq**: 不等运算符的替代表示（等价于`!=`）。
+- **nullptr**: 空指针常量（C++11）。
+- **operator**: 定义或重载运算符。
+- **or**: 逻辑或运算符的替代表示（等价于`||`）。
+- **or_eq**: 按位或赋值运算符的替代表示（等价于`|=`）。
+- **private**: 类的私有访问权限。
+- **protected**: 类的保护访问权限。
+- **public**: 类的公共访问权限。
+- **register**: 寄存器存储类型（提示编译器）。
+- **reinterpret_cast**: 重新解释类型转换。
+- **requires**: 指定模板需求（C++20）。
+- **return**: 从函数返回。
+- **short**: 短整数类型。
+- **signed**: 带符号类型。
+- **sizeof**: 获取类型或对象的大小。
+- **static**: 静态存储类型或类的静态成员。
+- **static_assert**: 编译时断言。
+- **static_cast**: 强制类型转换。
+- **struct**: 定义结构类型。
+- **switch**: 多分支选择语句。
+- **template**: 定义模板。
+- **this**: 指向当前对象的指针。
+- **thread_local**: 线程局部存储（C++11）。
+- **throw**: 抛出异常。
+- **true**: 布尔真值。
+- **try**: 尝试捕获异常。
+- **typedef**: 定义类型别名。
+- **typeid**: 获取类型信息。
+- **typename**: 指定类型名。
+- **union**: 定义联合类型。
+- **unsigned**: 无符号类型。
+- **using**: 引入命名空间或定义类型别名。
+- **virtual**: 声明虚函数或虚基类。
+- **void**: 无返回类型或无类型。
+- **volatile**: 声明易变变量，防止编译器优化。
+- **wchar_t**: 宽字符类型。
+- **while**: 条件测试循环。
+- **xor**: 按位异或运算符的替代表示（等价于`^`）。
+- **xor_eq**: 按位异或赋值运算符的替代表示（等价于`^=`）。
+
+### 0. `alignas`
+
+`alignas` 关键字用于指定变量或类型的内存对齐要求。它允许你设置更严格的对齐要求。
+
+**示例：**
+
+```C++
+#include <iostream>
+
+struct alignas(16) S {
+    int a;
+    double b;
+};
+
+int main() {
+    S s;
+    std::cout << "Alignment of S: " << alignof(S) << std::endl;
+    std::cout << "Sizeof of S: " << sizeof(S) << std::endl;
+    std::cout << "Address of s: " << &s << std::endl;
+    return 0;
+}
+/*
+Alignment of S: 16
+Sizeof of S: 16
+Address of s: 0000004ED16FF7B0
+*/
+```
+
+在这个例子中，`alignas(16)` 指定 `S` 结构体的对齐要求为 16 字节，这确保了 `S` 结构体的每个实例都以 16 字节对齐。
+
+### 1. `alignof`
+
+`alignof` 关键字用于获取类型的对齐要求，返回一个 `std::size_t` 值。
+
+**示例：**
+
+```C++
+#include <iostream>
+#include <cstddef>
+
+struct S {
+    int a;
+    double b;
+};
+
+int main() {
+    std::cout << "Alignment of int: " << alignof(int) << std::endl;
+    std::cout << "Alignment of double: " << alignof(double) << std::endl;
+    std::cout << "Alignment of S: " << alignof(S) << std::endl;
+    std::cout << "Sizeof of S: " << sizeof(S) << std::endl;
+    return 0;
+}
+/*
+Alignment of int: 4
+Alignment of double: 8
+Alignment of S: 8
+Sizeof of S: 16
+*/
+```
+
+这个例子打印出 `int`、`double` 和结构体 `S` 的对齐要求。
+
+### 2. `and(&&)`
+
+`and` 是 C++ 中的一个关键字，用作逻辑与操作符 (`&&`) 的替代形式。这是为了兼容更早期的代码和某些国际化需求。
+
+C++ 将 **`and`** 指定为 **`&&`** 的备选拼写。 在 C 中，备选拼写在 `<iso646.h>` 标头中作为宏提供。 在 C++ 中，备选拼写是关键字；已弃用 <iso646.h> 或 C++ 等效的 `<ciso646>`。 在 Microsoft C++ 中，需要 [`/permissive-`](https://learn.microsoft.com/zh-cn/cpp/build/reference/permissive-standards-conformance?view=msvc-170) 或 [`/Za`](https://learn.microsoft.com/zh-cn/cpp/build/reference/za-ze-disable-language-extensions?view=msvc-170) 编译器选项才能启用备选拼写。
+
+**示例：**
+
+```C++
+#include <iostream>
+
+int main() {
+    bool a = true;
+    bool b = false;
+    if (a && b) {
+        std::cout << "Both are true" << std::endl;
+    } else {
+        std::cout << "At least one is false" << std::endl;
+    }
+    return 0;
+}
+/*
+At least one is false
+*/
+```
+
+在这个例子中， `&&` 进行逻辑与操作。
+
+### 3. `and_eq(&=)`
+
+`and_eq` 是 C++ 中的一个关键字，用作按位与赋值操作符 (`&=`) 的替代形式。
+
+C++ 将这些运算符关键字指定为复合赋值运算符的替代拼写。 在 C 中，替代拼写在 `<iso646.h>` 标头中作为宏提供。 在 C++ 中，备选拼写是关键字；不推荐使用 <iso646.h> 或 C++ 等效的 `<ciso646>`。 在 Microsoft C++ 中，需要 [`/permissive-`](https://learn.microsoft.com/zh-cn/cpp/build/reference/permissive-standards-conformance?view=msvc-170) 或 [`/Za`](https://learn.microsoft.com/zh-cn/cpp/build/reference/za-ze-disable-language-extensions?view=msvc-170) 编译器选项才能启用备选拼写。
+
+后续这样的关键字不再赘述。
+
+**示例：**
+
+```C++
+#include <iostream>
+
+int main() {
+    int a = 6; // 0110 in binary
+    a &= 3; // 3 is 0011 in binary, a becomes 0010 (2 in decimal)
+    std::cout << "Result: " << a << std::endl; // Output: Result: 2
+    return 0;
+}
+/*
+2
+*/
+```
+
+在这个例子中， `&=` 进行按位与赋值操作。
+
+### 4. `asm`
+
+`asm` 关键字允许在 C++ 代码中嵌入汇编代码。它提供了一种在 C++ 中直接使用低级别汇编语言的方式（C++中最难的一个函数🤪）。
+
+`error C4235: nonstandard extension used : '__asm' keyword not supported on this architecture`在MSVC上，64位不支持加入汇编语言编译，下面代码使用[MinGW-w64](https://www.mingw-w64.org/)编译。
+
+**示例：**
+
+```C++
+#include <iostream>
+
+int main() {
+    int result;
+    asm ("movl $42, %0" : "=r" (result)); // Move 42 into the result variable
+    std::cout << "Result: " << result << std::endl;
+    return 0;
+}
+/*
+Result: 42
+*/
+```
+
+在这个例子中，`asm` 关键字嵌入了一条汇编指令，将 42 赋值给变量 `result`。
+
+### 5. `auto`
+
+`auto` 关键字用于自动推导变量的类型。它允许编译器根据初始化表达式自动确定变量的类型。
+
+**示例：**
+
+```C++
+#include <iostream>
+
+int main() {
+    auto i = 10; // i is of type int
+    auto d = 3.14; // d is of type double
+    auto s = "Hello, world!"; // s is of type const char*
+    std::cout << "i: " << i << std::endl;
+    std::cout << "d: " << d << std::endl;
+    std::cout << "s: " << s << std::endl;
+    return 0;
+}
+/*
+i: 10
+d: 3.14
+s: Hello, world!
+*/
+```
+
+在这个例子中，`auto` 关键字用于声明变量 `i`、`d` 和 `s`，编译器根据它们的初始化表达式推导出它们的类型。
+
+### 6. `bitand(&)` 
+
+按位与。
+
+**示例：**
+
+```C++
+#include <iostream>
+int main() {
+    int x = 5;  // 0101 in binary
+    int y = 3;  // 0011 in binary
+    std::cout << "Result of x & y: " << (x & y) << std::endl;
+    return 0;
+}
+/*
+1
+*/
+```
+
+### 7. `bitor(|)`
+
+按位或。
+
+**示例：**
+
+```C++
+#include <iostream>
+int main() {
+    int x = 5;  // 0101 in binary
+    int y = 3;  // 0011 in binary
+    std::cout << "Result of x | y: " << (x | y) << std::endl;
+    return 0;
+}
+/*
+7
+*/
+```
+
+### 8. `bool`
+
+`bool` 是 C++ 中的基本数据类型，表示布尔值，只有两个可能的取值：`true` 和 `false`。`bool` 类型通常用于条件判断和逻辑运算。
+
+**示例：**
+
+```C++
+#include <iostream>
+int main() {
+    bool isTrue = true;
+    bool isFalse = false;
+    if (isTrue) {
+        std::cout << "isTrue is true" << std::endl;
+    }
+    if (!isFalse) {
+        std::cout << "isFalse is false" << std::endl;
+    }
+    return 0;
+}
+/*
+isTrue is true
+isFalse is false
+*/
+```
+
+### 9. `break`
+
+`break` 是一种控制语句，用于立即终止**最内层**的循环或 switch 语句的执行，跳出循环或 switch 结构。通常用于在某个条件满足时提前退出循环或 switch 语句。
+
+**示例：**
+
+```C++
+#include <iostream>
+int main() {
+    // Using break in a loop
+    for (int i = 0; i < 10; ++i) {
+        if (i == 5) {
+            break;  // Exit the loop when i is 5
+        }
+        std::cout << "i = " << i << std::endl;
+    }
+
+    // Using break in a switch statement
+    int x = 2;
+    switch (x) {
+        case 1:
+            std::cout << "x is 1" << std::endl;
+            break;
+        case 2:
+            std::cout << "x is 2" << std::endl;
+            break;
+        case 3:
+            std::cout << "x is 3" << std::endl;
+            break;
+        default:
+            std::cout << "x is not 1, 2, or 3" << std::endl;
+    }
+    return 0;
+}
+/*
+i = 0
+i = 1
+i = 2
+i = 3
+i = 4
+x is 2
+*/
+```
+
+### 10. `case`
+
+`case` 关键字用于 `switch` 语句中，表示一个分支选项。每个 `case` 标签后跟一个常量值，当 `switch` 表达式的值与该常量匹配时，程序将执行 `case` 标签后的语句。
+
+**示例：**
+
+```C++
+#include <iostream>
+int main() {
+    int x = 2;
+    switch (x) {
+        case 1:
+            std::cout << "x is 1" << std::endl;
+            break;
+        case 2:
+            std::cout << "x is 2" << std::endl;
+            break;
+        case 3:
+            std::cout << "x is 3" << std::endl;
+            break;
+        default:
+            std::cout << "x is not 1, 2, or 3" << std::endl;
+    }
+
+    return 0;
+}
+/*
+x is 2
+*/
+```
+
+在这个例子中，当 `x` 的值为 `2` 时，程序执行 `case 2` 后的语句。
+
+### 11. `catch`
+
+`catch` 关键字用于异常处理机制中，用来捕获异常对象。当 `try` 块中发生异常时，程序控制流会转移到对应的 `catch` 块。
+
+**示例：**
+
+```C++
+#include <iostream>
+int main() {
+    try {
+        throw std::runtime_error("An error occurred");
+    } catch (const std::runtime_error& e) {
+        std::cout << "Caught an exception: " << e.what() << std::endl;
+    }
+    return 0;
+}
+/*
+Caught an exception: An error occurred
+*/
+```
+
+在这个例子中，当 `throw` 语句抛出一个 `runtime_error` 异常时，程序会捕获这个异常并执行 `catch` 块中的代码。
+
+### 12. `char`
+
+`char` 是 C++ 中的基本数据类型，表示一个字符（2^8）。它通常用于存储字符数据或小整数。
+
+**示例：**
+
+```C++
+#include <iostream>
+int main() {
+    char ch = 'A';
+    std::cout << "Character: " << ch << std::endl;
+    return 0;
+}
+/*
+Character: A
+*/
+```
+
+在这个例子中，`ch` 变量存储字符 `A`，并将其输出。
+
+### 13. `char8_t`
+
+`char8_t` 是 C++20 中引入的新类型，用于表示 UTF-8 编码的字符。这有助于明确表示和处理 UTF-8 字符数据。
+
+### 14. `char16_t`
+
+`char16_t` 是用于表示 UTF-16 编码的字符的类型。这种类型通常用于需要处理宽字符和多语言文本的场景。
+
+### 15. `char32_t`
+
+`char32_t` 是用于表示 UTF-32 编码的字符的类型。这种类型用于处理完整的 Unicode 字符集，因为每个字符都占用 32 位。
+
+**示例：**
+
+```C++
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    char ch[] = "我";
+    char8_t ch8[] = u8"我";
+    wchar_t wch[] = L"我";
+    char16_t ch16[] = u"我";
+    char32_t ch32[] = U"我";
+    cout << &ch << endl;
+    cout << &ch8 << endl;
+    cout << &wch << endl;
+    cout << &ch16 << endl;
+    cout << &ch32 << endl << endl;
+    printf("ch:%#x", ch[0]);
+    printf("%#x", ch[1]);
+    printf("%#x", ch[2]);
+    printf("%#x", ch[3]);
+    printf("\n");
+    printf("ch8:%#x", ch[0]);
+    printf("%#x", ch8[1]);
+    printf("%#x", ch8[2]);
+    printf("%#x", ch8[3]);
+    printf("\n");
+    printf("wch:%#x", wch[0]);
+    printf("\n");
+    printf("ch16:%#x", ch16[0]);
+    printf("\n");
+    printf("ch32:%#x", ch32[0]);
+    printf("\n");
+}
+/*
+0000007085CFFB04
+0000007085CFFB24
+0000007085CFFB44
+0000007085CFFB64
+0000007085CFFB88
+
+ch:0xffffffe60xffffff880xffffff910
+ch8:0xffffffe60x880x910
+wch:0x6211
+ch16:0x6211
+ch32:0x6211
+*/
+```
+
+char8_t stream out is expressly forbidden in C++20. 目前无法直接输出。
+
+### 16. `class`
+
+`class` 是 C++ 中定义类的关键字。类是用户定义的数据类型，它封装了数据和操作这些数据的函数。类是面向对象编程（OOP）的核心部分，提供了封装、继承和多态性等特性。
+
+**示例：**
+
+```cpp
+#include <iostream>
+class Person {
+public:
+    std::string name;
+    int age;
+    void introduce() {
+        std::cout << "Hi, my name is " << name << " and I am " << age << " years old." << std::endl;
+    }
+};
+int main() {
+    Person person;
+    person.name = "John";
+    person.age = 30;
+    person.introduce();
+    return 0;
+}
+/*
+Hi, my name is John and I am 30 years old.
+*/
+```
+
+在这个例子中，`Person` 类包含两个数据成员（`name` 和 `age`）以及一个成员函数（`introduce`）。
+
+### 17. `compl(~)`
+
+`compl` 是 C++ 中的替代标识符，用于表示按位补操作符 `~`。它用于按位取反操作，但在实际代码中不常用。
+
+**示例：**
+
+```cpp
+#include <iostream>
+int main() {
+    int x = 5;  // 0101 in binary
+    int result = ~ x;  // ~0101 = 1010 (in binary, with respect to a 4-bit system, the result is -6 in decimal)
+    std::cout << "Result of compl x: " << result << std::endl;
+    return 0;
+}
+/*
+Result of compl x: -6
+*/
+```
+
+### 18. `concept`
+
+`concept` 是 C++20 中引入的关键字，用于定义概念。概念是对模板参数的约束，它规定了模板参数必须满足的条件。这有助于提高模板代码的可读性和错误检测能力。
+
+**示例：**
+
+```cpp
+#include <iostream>
+#include <concepts>
+
+template<typename T>
+concept Addable = requires(T a, T b) {
+    { a + b } -> std::convertible_to<T>;
+};
+template<Addable T>
+T add(T a, T b) {
+    return a + b;
+}
+
+int main() {
+    std::cout << add(1, 2) << std::endl;  // Valid
+    // std::cout << add("Hello", "World") << std::endl;  // Invalid, strings are not Addable
+    return 0;
+}
+/*
+3
+*/
+```
+
+在这个例子中，`Addable` 概念规定模板参数必须支持 `+` 操作符，并且结果可以转换为该类型。
+
+### 19. `const`
+
+`const` 关键字用于定义常量，表示变量的值在初始化后不能再修改。它可以用于变量、指针、成员函数等，增强代码的安全性和可读性。
+
+**示例：**
+
+```cpp
+#include <iostream>
+int main() {
+    const int x = 10;
+    // x = 20;  // Error: assignment of read-only variable 'x'
+    std::cout << "x: " << x << std::endl;
+    return 0;
+}
+/*
+x: 20
+*/
+```
+
+在这个例子中，`x` 是一个常量，不能被重新赋值。
+
+### 20. `const_cast`
+
+`const_cast` 是一种类型转换操作符，用于在程序中添加或移除 `const` 属性。它通常用于需要修改原本定义为 `const` 的对象，但应谨慎使用以避免未定义行为。
+
+**示例：**
+
+```cpp
+#include <iostream>
+void modify(const int* p) {
+    int* non_const_p = const_cast<int*>(p);
+    *non_const_p = 20;
+}
+int main() {
+    int x = 10;
+    modify(&x);
+    std::cout << "x: " << x << std::endl;
+    return 0;
+}
+/*
+x: 20
+*/
+```
+
+在这个例子中，`const_cast` 用于移除 `const` 属性，从而允许修改原本定义为 `const` 的指针所指向的值。
+
+### 21. `consteval`
+
+`consteval` 关键字用于定义**必须**在编译时求值的常量表达式函数。这些函数在编译时被调用和求值。
+
+**示例：**
+
+```cpp
+#include <iostream>
+consteval int square(int n) {
+    return n * n;
+}
+int main() {
+    constexpr int result = square(5);
+    std::cout << "Square of 5: " << result << std::endl;
+    return 0;
+}
+/*
+Square of 5: 25
+*/
+```
+
+在这个例子中，`square` 函数必须在编译时求值。
+
+### 22. `constexpr`
+
+`constexpr` 关键字用于定义**可能**在编译时求值的常量表达式。它可以应用于变量、函数、构造函数等。与 `consteval` 不同，`constexpr` 函数可以在运行时求值。
+
+**示例：**
+
+```cpp
+#include <iostream>
+constexpr int factorial(int n) {
+    return (n <= 1) ? 1 : (n * factorial(n - 1));
+}
+int main() {
+    constexpr int result = factorial(5);
+    std::cout << "Factorial of 5: " << result << std::endl;
+    return 0;
+}
+/*
+Factorial of 5: 120
+*/
+```
+
+在这个例子中，`factorial` 函数可以在编译时求值，因此 `result` 是一个编译时常量。
+
+### 23. `constinit`
+
+`constinit` 是 C++20 中引入的关键字，用于指示在初始化期间使用静态初始化。它类似于 `constexpr`，但不要求表达式在编译时求值，而是要求在运行时执行静态初始化。
+
+**示例：**
+
+```cpp
+constinit int x = 10;  // 静态初始化
+```
+
+### 24. `continue`
+
+`continue` 是 C++ 中的关键字，用于在循环中立即跳转到下一次迭代的开始。当 `continue` 执行时，它会结束当前迭代，继续下一次迭代。
+
+**示例：**
+
+```cpp
+for (int i = 0; i < 5; ++i) {
+    if (i == 2) {
+        continue;  // 当 i 等于 2 时，跳过此次迭代
+    }
+    std::cout << i << std::endl;
+}
+```
+
+在上面的例子中，当 `i` 等于 2 时，`continue` 语句导致跳过输出 `2`，然后继续下一次迭代。
+
+### 25. `co_await`
+
+`co_await` 是 C++20 中引入的关键字，用于支持协程（coroutine）。它用于暂时挂起协程的执行，等待异步操作完成后再继续执行。
+
+### 26. `co_return`
+
+`co_return` 是 C++20 中引入的关键字，用于从协程中返回结果并结束协程的执行。它用于返回异步操作的结果或其它需要在协程内部返回的值。
+
+### 27. `co_yield`
+
+`co_yield` 是 C++20 中引入的关键字，用于在协程中产生一个值并且保持协程的执行状态。它类似于 `yield`，但用于协程。
+
+**示例：**
+
+```C++
+#include <iostream>
+#include <coroutine>
+#include <exception>
+#include <vector>
+#include <future>
+
+// 定义一个简单的 Awaiter
+struct SimpleAwaiter {
+    bool await_ready() const noexcept {
+        return false;
+    }
+    
+    void await_suspend(std::coroutine_handle<> handle) const {
+        std::thread([handle] {
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            handle.resume();
+        }).detach();
+    }
+    
+    void await_resume() const noexcept {}
+};
+
+// 定义一个异步生成器类型
+template<typename T>
+struct Generator {
+    struct promise_type {
+        T current_value;
+        std::exception_ptr exception;
+
+        Generator get_return_object() {
+            return Generator{
+                std::coroutine_handle<promise_type>::from_promise(*this)
+            };
+        }
+
+        std::suspend_always initial_suspend() {
+            return {};
+        }
+
+        std::suspend_always final_suspend() noexcept {
+            return {};
+        }
+
+        void unhandled_exception() {
+            exception = std::current_exception();
+        }
+
+        std::suspend_always yield_value(T value) {
+            current_value = value;
+            return {};
+        }
+
+        void return_void() {}
+    };
+
+    std::coroutine_handle<promise_type> handle;
+
+    Generator(std::coroutine_handle<promise_type> h) : handle(h) {}
+
+    ~Generator() {
+        if (handle) handle.destroy();
+    }
+
+    bool move_next() {
+        handle.resume();
+        if (handle.done()) {
+            if (handle.promise().exception) {
+                std::rethrow_exception(handle.promise().exception);
+            }
+            return false;
+        }
+        return true;
+    }
+
+    T current_value() {
+        return handle.promise().current_value;
+    }
+};
+
+// 定义一个异步生成器函数
+Generator<int> asyncGenerator() {
+    for (int i = 1; i <= 5; ++i) {
+        co_await SimpleAwaiter();
+        co_yield i;
+    }
+    co_return;
+}
+
+int main() {
+    auto generator = asyncGenerator();
+    while (generator.move_next()) {
+        std::cout << "Generated value: " << generator.current_value() << std::endl;
+    }
+
+    return 0;
+}
+```
+
+1. **Awaiter**：
+   - `SimpleAwaiter` 是一个简单的 Awaiter，模拟异步操作。在 `await_suspend` 方法中，它使用一个线程延迟 100 毫秒后恢复协程。
+
+2. **Generator**：
+   - `Generator` 是一个模板类，用于表示异步生成器。它包含一个 `promise_type`，定义了协程的行为。
+   - `yield_value` 方法用于在协程中产生值。
+   - `return_void` 方法表示协程完成时不返回值。
+
+3. **asyncGenerator**：
+   - `asyncGenerator` 是一个生成器函数，使用 `co_await` 来等待异步操作，并使用 `co_yield` 产生一系列数字。最后使用 `co_return` 结束协程。
+
+4. **main**：
+   - 在 `main` 函数中，调用 `asyncGenerator` 来获取生成器对象，并使用 `move_next` 方法遍历生成的值，打印到控制台。
+
+### 28. `decltype`
+
+`decltype` 是 C++11 引入的关键字，用于推断表达式的类型。它可以用于声明变量或者作为返回类型推断的一部分。
+
+**示例：**
+
+```cpp
+int x = 5;
+decltype(x) y = 10;  // y 的类型为 int，和 x 相同的类型
+struct Foo {
+    int value;
+};
+decltype(Foo::value) z = 20;  // z 的类型为 int，等价于 int
+
+#include <iostream>
+#include <type_traits>
+
+// 函数模板，使用 decltype 推断返回类型
+template <typename T1, typename T2>
+auto add(T1 a, T2 b) -> decltype(a + b) {
+    return a + b;
+}
+
+int main() {
+    int x = 5;
+    double y = 3.5;
+
+    auto result = add(x, y);
+
+    std::cout << "Result: " << result << std::endl; // 输出：Result: 8.5
+    std::cout << "Result type: " << (std::is_same<decltype(result), double>::value ? "double" : "not double") << std::endl;
+
+    return 0;
+}
+```
+
+### 29. `default`
+
+`default` 是 C++11 引入的关键字，用于指定类的默认构造函数、拷贝构造函数、赋值操作符或析构函数应该是编译器生成的默认实现。它可以覆盖用户声明的特殊成员函数。
+
+**示例：**
+
+```cpp
+class Example {
+public:
+    Example() = default;        // 默认构造函数
+    Example(const Example&) = default;  // 默认拷贝构造函数
+    Example& operator=(const Example&) = default;  // 默认赋值操作符
+    ~Example() = default;       // 默认析构函数
+};
+```
+
+### 30. `delete`
+
+`delete` 是 C++11 引入的关键字，用于删除特定函数或者操作符的默认定义，防止它们被调用。通常与 `default` 关键字相对，用于显式地删除特殊成员函数。
+
+**示例：**
+
+```cpp
+class NoCopy {
+public:
+    NoCopy() = default;
+    NoCopy(const NoCopy&) = delete;  // 删除拷贝构造函数
+    NoCopy& operator=(const NoCopy&) = delete;  // 删除赋值操作符
+};
+NoCopy obj1;
+NoCopy obj2 = obj1;  // 编译错误，无法调用被删除的拷贝构造函数
+```
+
+### 31. `do`
+
+`do` 是 C++ 中的关键字，用于引导 `do-while` 循环语句，它会在执行循环体之前先执行一次条件检查。
+
+**示例：**
+
+```cpp
+int i = 0;
+do {
+    std::cout << i << std::endl;
+    ++i;
+} while (i < 5);
+```
+
+### 32. `double`
+
+`double` 是 C++ 中的关键字，用于声明双精度浮点数类型。在 C++ 中，`double` 可以用来定义更大范围和更高精度的浮点数（8字节）。
+
+**示例：**
+
+```cpp
+double pi = 3.14159;
+double largeNumber = 1234567890.1234567890;
+```
+
+### 33. `dynamic_cast`
+
+`dynamic_cast` 是 C++ 中的关键字，用于在**运行时**进行类型转换，通常用于处理多态类型的转换，比如将基类指针或引用转换为派生类指针或引用。
+
+**示例：**
+
+```cpp
+class Base {
+public:
+    virtual ~Base() {}
+};
+class Derived : public Base {};
+Base* basePtr = new Derived();
+Derived* derivedPtr = dynamic_cast<Derived*>(basePtr);
+if (derivedPtr) {
+    // 如果转换成功，derivedPtr 指向 Derived 类的对象
+} else {
+    // 如果转换失败，derivedPtr 为 nullptr
+}
+```
+
+### 34. `else`
+
+`else` 是一个条件语句关键字，用于与 `if` 语句配合使用。当 `if` 语句的条件为 `false` 时，执行 `else` 块中的代码。`else` 可以和 `if`、`else if` 语句链一起使用来处理多种条件。
+
+**示例：**
+
+```cpp
+#include <iostream>
+int main() {
+    int number = 10;
+    if (number > 0) {
+        std::cout << "Number is positive." << std::endl;
+    } else if (number == 0) {
+        std::cout << "Number is zero." << std::endl;
+    } else {
+        std::cout << "Number is negative." << std::endl;
+    }
+    return 0;
+}
+```
+
+### 35. `enum`
+
+`enum` 是 C++ 中的关键字，用于定义枚举类型。枚举是一种用户定义的数据类型，由一组命名的整数常量组成。每个枚举常量的值默认从 0 开始，并依次递增。
+
+**示例：**
+
+```cpp
+#include <iostream>
+enum Color {
+    Red,    // 0
+    Green,  // 1
+    Blue    // 2
+};
+int main() {
+    Color color = Green;
+    if (color == Green) {
+        std::cout << "The color is Green." << std::endl;
+    }
+    return 0;
+}
+```
+
+### 36. `explicit`
+
+`explicit` 是一个声明类构造函数的关键字，用于**防止构造函数被隐式调用进行类型转换**。这在避免不明确的转换和错误的构造时非常有用。
+
+**示例：**
+
+```cpp
+#include <iostream>
+class Complex {
+    double real, imag;
+public:
+    explicit Complex(double r, double i) : real(r), imag(i) {}
+    explicit Complex(double r) : real(r), imag(0) {}
+};
+void printComplex(const Complex& c) {
+    // 假设这里有代码打印复数
+}
+int main() {
+    Complex c1(4.0, 5.0);  // 正确
+    Complex c2(3.0);       // 正确
+    // Complex c3 = 3.0;   // 编译错误，因为explicit禁止隐式转换
+    printComplex(c1);      // 正确
+    // printComplex(3.0);  // 编译错误，因为explicit禁止隐式转换
+    return 0;
+}
+```
+
+### 37. `export`
+
+`export` 关键字在 C++ 中用于模板声明，最初设计是为了允许模板定义在一个文件中实现，而在另一个文件中声明和实例化。然而，`export` 关键字在 C++11 中被移除，因为它在实际实现中很少被使用且支持较差。
+
+### 38. `extern`
+
+`extern` 是 C++ 中的关键字，用于声明一个变量或函数在其他文件中定义。在多文件程序中，`extern` 用于提供对全局变量和函数的访问。
+
+**示例：**
+
+```cpp
+// file1.cpp
+#include <iostream>
+int globalVariable = 10;
+void printGlobal() {
+    std::cout << "Global variable: " << globalVariable << std::endl;
+}
+
+// file2.cpp
+#include <iostream>
+extern int globalVariable;  // 声明外部变量
+extern void printGlobal();  // 声明外部函数
+int main() {
+    printGlobal();           // 调用定义在 file1.cpp 中的函数
+    globalVariable = 20;     // 修改 file1.cpp 中定义的全局变量
+    printGlobal();
+    return 0;
+}
+```
+
+**`extern "C"`**
+
+C++ 和 C 的函数名修饰（name mangling）方式不同。C++ 编译器会对函数名进行修饰以支持函数重载等特性，而 C 编译器不会。因此，如果你在 C++ 中调用 C 代码或暴露 C++ 函数给 C 使用，必须使用 `extern "C"` 以确保函数名保持不变，防止链接错误。
+
+**1. 在 C++ 中调用 C 函数**
+
+假设有一个用 C 语言编写的库，并且这个库头文件如下（`example.h`）：
+
+```c
+// example.h
+#ifndef EXAMPLE_H
+#define EXAMPLE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void cFunction();
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+```
+
+在 C++ 文件中使用这个函数：
+
+```cpp
+// main.cpp
+#include <iostream>
+#include "example.h"
+
+int main() {
+    cFunction();  // 调用C语言中的函数
+    return 0;
+}
+```
+
+在 `example.h` 中，`extern "C"` 确保 `cFunction` 在 C++ 中仍然能被正确链接和调用。
+
+**2. 暴露 C++ 函数给 C 代码使用**
+
+假设你有一个 C++ 库，想要暴露给 C 语言使用，你可以这样写：
+
+```cpp
+// my_cpp_library.cpp
+#include <iostream>
+extern "C" void cppFunction() {
+    std::cout << "This is a C++ function called from C!" << std::endl;
+}
+```
+
+然后，C 代码可以像调用 C 函数一样调用这个 C++ 函数：
+
+```c
+// main.c
+#include <stdio.h>
+// 声明 C++ 函数
+extern void cppFunction();
+int main() {
+    cppFunction();  // 调用 C++ 函数
+    return 0;
+}
+```
+
+以下是对 C++ 中这几个关键字的详细解释：
+
+### 39. `false`
+
+`false` 是布尔类型 `bool` 的两个字面值之一，另一个是 `true`。 `false` 表示布尔值中的“假”，其数值表示通常为 0。
+
+**示例：**
+
+```cpp
+bool isFinished = false; // 变量 isFinished 被赋值为 false
+if (isFinished) {
+    // 这个块不会被执行，因为 isFinished 是 false
+}
+```
+
+### 40. `float`
+
+`float` 是一种基本数据类型，用于表示单精度浮点数（4位）。通常，`float` 提供至少 6 位有效数字，范围和具体精度取决于实现（标准要求不小于 6 位有效数字）。
+
+**示例：**
+
+```cpp
+float x = 3.14f; // 定义单精度浮点变量
+float y = 0.1e-2f; // 也可以使用指数表示法
+```
+
+### 41. `for`
+
+`for` 是一种控制结构，用于创建循环。它提供了一种在一定次数内重复执行一段代码的方式。
+
+**示例：**
+
+```cpp
+for (int i = 0; i < 10; ++i) {
+    std::cout << i << std::endl;
+}
+std::vector<int> vc;
+for (auto c: vc)
+{
+    std::cout << c << std::endl;
+}
+```
+### 42. `friend`
+
+`friend` 关键字用于指定一个函数或另一个类可以访问某个类的私有和受保护成员。它破坏了类的封装性，但在某些情况下是必要的。**友元函数**：可以访问类的私有和保护成员。**友元类**：该类中的所有函数可以访问另一个类的私有和保护成员。
+
+**示例：**
+
+```cpp
+class A {
+private:
+    int value;
+public:
+    A() : value(0) {}
+    friend void setValue(A& a, int v); // 声明友元函数
+};
+void setValue(A& a, int v) {
+    a.value = v; // 访问私有成员
+}
+```
+在这个例子中，`setValue` 是 `A` 的友元函数，因此它可以访问 `A` 的私有成员 `value`。
+
+### 43. `goto`
+
+`goto` 语句用于无条件跳转到程序中的某个标签。它可以改变程序的正常执行顺序。标签是一个标识符后跟冒号，用于标记可以跳转的位置。
+
+**示例：**
+
+```cpp
+#include <iostream>
+int main() {
+    int x = 10;
+    if (x == 10) {
+        goto skip;
+    }
+    std::cout << "This line will be skipped." << std::endl;
+skip:
+    std::cout << "This line will be executed." << std::endl;
+
+    return 0;
+}
+```
+在这个例子中，如果 `x` 等于 10，程序将跳过 `goto` 和 `skip` 标签之间的代码。
+
+### 44. `if`
+
+`if` 关键字用于条件判断，根据表达式的布尔值执行不同的代码块。
+
+**示例：**
+
+```cpp
+int x = 10;
+if (x > 5) {
+    std::cout << "x is greater than 5" << std::endl;
+} else {
+    std::cout << "x is not greater than 5" << std::endl;
+}
+```
+在这个例子中，如果 `x` 大于 5，则输出 `x is greater than 5`，否则输出 `x is not greater than 5`。
+
+### 45. `inline`
+
+`inline` 关键字用于**建议**编译器将函数的调用展开为函数体代码，以减少函数调用的开销。
+
+**示例：**
+
+```cpp
+inline int add(int a, int b) {
+    return a + b;
+}
+```
+
+### 46. `int`
+
+`int` 是一种基本数据类型，用于表示整数。通常为 -2,147,483,648 到 2,147,483,647（32 位系统，4位），但具体范围取决于实现。
+
+**示例：**
+
+```cpp
+int x = 42;
+int y = x * 2;
+```
+
+### 47. `long`
+
+`long` 是一种数据类型修饰符，用于表示比 `int` 更长的整数类型（64位系统，8位）。具体范围取决于实现，但至少为 -2,147,483,648 到 2,147,483,647。
+
+**示例：**
+
+```cpp
+long x = 1234567890L; // 后缀 L 表示 long 型字面值
+long long y = 1234567890123456789LL; // 后缀 LL 表示 long long 型字面值
+```
+
+### 48. `mutable`
+
+ `mutable` 关键字用于允许在 `const` 对象中修改某个成员变量。它破坏了 `const` 约束，但在某些场景下是有用的，比如实现缓存机制。
+
+**示例：**
+
+```cpp
+class Example {
+public:
+    Example() : value(0) {}
+    void setValue(int v) const {
+        mutableValue = v; // 修改 mutable 变量
+    }
+    int getValue() const { return mutableValue; }
+private:
+    mutable int mutableValue;
+    int value;
+};
+```
+在这个例子中，即使 `setValue` 是一个 `const` 成员函数，它仍然可以修改 `mutableValue` 变量。
+
+### 49. `namespace`
+
+`namespace` 关键字用于定义一个作用域，以便将标识符（例如变量、函数、类等）进行逻辑上的分组，避免命名冲突。
+
+**示例：**
+
+```cpp
+namespace MyNamespace {
+    int value = 42;
+    void foo() {
+        std::cout << "Hello from MyNamespace" << std::endl;
+    }
+}
+int main() {
+    MyNamespace::foo(); // 调用命名空间内的函数
+    std::cout << MyNamespace::value << std::endl; // 访问命名空间内的变量
+    return 0;
+}
+```
+
+在这个例子中，`MyNamespace` 定义了一个作用域，包含一个变量 `value` 和一个函数 `foo`，可以通过 `MyNamespace::` 进行访问。
+
+### 50. `new`
+
+`new` 关键字用于在堆上动态分配内存，并返回指向已分配内存的指针。
+
+**示例：**
+
+```cpp
+int* ptr = new int(10); // 分配一个整数并初始化为 10
+std::cout << *ptr << std::endl; // 输出 10
+delete ptr; // 释放内存
+```
+
+在这个例子中，`new` 分配了一个整数并初始化为 10，返回的指针存储在 `ptr` 中，使用完毕后通过 `delete` 释放内存。
+
+### 51. `noexcept`
+
+`noexcept` 关键字用于**指定函数不会抛出异常**，**允许编译器进行优化**，并在异常安全性方面提供保证。
+
+**示例：**
+
+```cpp
+void foo() noexcept {
+    // 函数体保证不抛出异常
+}
+int main() {
+    foo();
+    return 0;
+}
+```
+
+在这个例子中，`foo` 函数被指定为 `noexcept`，表示它不会抛出任何异常。
+
+### 52. `not(!)`
+
+`not` 关键字是逻辑非运算符 `!` ，用于取反布尔值。
+
+**示例：**
+
+```cpp
+bool value = false;
+if (! value) {
+    std::cout << "value is false" << std::endl;
+}
+```
+
+在这个例子中，`!value`，表示逻辑非操作。
+
+### 53. `not_eq(!=)`
+
+`not_eq` 关键字是不等运算符 `!=`，用于比较两个值是否不相等。
+
+**示例：**
+
+```cpp
+int a = 5;
+int b = 10;
+if (a != b) {
+    std::cout << "a is not equal to b" << std::endl;
+}
+```
+
+在这个例子中， `a != b`，表示比较两个值是否不相等。
+
+### 54. `nullptr`
+
+`nullptr` 关键字用于表示空指针，替代传统的 `NULL`，提供类型安全性。
+
+**示例：**
+
+```cpp
+int* ptr = nullptr; // 初始化空指针
+if (ptr == nullptr) {
+    std::cout << "ptr is null" << std::endl;
+}
+```
+
+在这个例子中，`ptr` 被初始化为 `nullptr`，表示它是一个空指针。
+
+### 55. `operator`
+
+`operator` 关键字用于定义或重载运算符，以便为自定义类型（类或结构体）赋予特殊的操作行为。
+
+**示例：**
+
+```cpp
+class Complex {
+public:
+    Complex(double r, double i) : re(r), im(i) {}
+    // 重载加法运算符
+    Complex operator+(const Complex& other) const {
+        return Complex(re + other.re, im + other.im);
+    }
+    void display() const {
+        std::cout << re << " + " << im << "i" << std::endl;
+    }
+private:
+    double re, im;
+};
+int main() {
+    Complex c1(1.0, 2.0);
+    Complex c2(2.0, 3.0);
+    Complex c3 = c1 + c2; // 使用重载的加法运算符
+    c3.display(); // 输出 3.0 + 5.0i
+    return 0;
+}
+```
+
+在这个例子中，`operator+` 重载了加法运算符，使得 `Complex` 对象可以进行加法操作。
+
+### 56. `or` (`||`)
+
+`or` 关键字是逻辑或运算符 `||` ，用于在布尔表达式中执行逻辑或操作。
+
+**示例：**
+
+```cpp
+bool a = true;
+bool b = false;
+if (a || b) {
+    std::cout << "Either a or b is true" << std::endl;
+}
+```
+
+在这个例子中， `a || b`，表示逻辑或操作。
+
+### 57. `or_eq` (`|=`)
+
+`or_eq` 关键字是按位或赋值运算符 `|=` ，用于对变量执行按位或赋值操作。
+
+**示例：**
+
+```cpp
+int x = 5;  // 0101 in binary
+x |= 3;  // 0011 in binary, x becomes 7 (0111 in binary)
+std::cout << x << std::endl; // 输出 7
+```
+
+在这个例子中， `x |= 3`，表示按位或赋值操作。
+
+### 58. `private`
+
+`private` 关键字用于指定类成员的访问权限，表明这些成员只能在类的内部访问，外部代码无法直接访问。
+
+**示例：**
+
+```cpp
+class Example {
+private:
+    int value;
+public:
+    Example(int v) : value(v) {}
+    void display() const {
+        std::cout << value << std::endl;
+    }
+};
+int main() {
+    Example ex(10);
+    // ex.value = 20; // 错误：value 是 private 成员
+    ex.display(); // 正确：通过 public 成员函数访问
+    return 0;
+}
+```
+
+在这个例子中，`value` 是 `private` 成员，只能通过 `public` 成员函数 `display` 访问。
+
+### 59. `protected`
+
+`protected` 关键字用于指定类成员的访问权限，表明这些成员可以在类的内部和派生类中访问，但外部代码无法直接访问。
+
+**示例：**
+
+```cpp
+class Base {
+protected:
+    int value;
+public:
+    Base(int v) : value(v) {}
+};
+class Derived : public Base {
+public:
+    Derived(int v) : Base(v) {}
+
+    void display() const {
+        std::cout << value << std::endl; // 访问 protected 成员
+    }
+};
+int main() {
+    Derived d(10);
+    d.display(); // 输出 10
+    // d.value = 20; // 错误：value 是 protected 成员
+    return 0;
+}
+```
+
+在这个例子中，`value` 是 `protected` 成员，可以在派生类 `Derived` 中访问，但不能在外部代码中直接访问。
+
+### 60. `public`
+
+`public` 关键字用于指定类成员的访问权限，表明这些成员可以在类的内部和外部代码中访问。公有继承无法访问基类私有变量（尽管物理上复制了）。
+
+**示例：**
+
+```cpp
+class Example {
+public:
+    int value;
+    Example(int v) : value(v) {}
+    void display() const {
+        std::cout << value << std::endl;
+    }
+};
+int main() {
+    Example ex(10);
+    ex.value = 20; // 直接访问 public 成员
+    ex.display(); // 输出 20
+    return 0;
+}
+```
+
+在这个例子中，`value` 是 `public` 成员，可以在外部代码中直接访问和修改。
+
+### 61. `register`
+
+`register` 关键字用于**建议**编译器将变量存储在寄存器中，而不是在内存中，以提高访问速度。现代编译器通常会自动进行这种优化，因此这个关键字现在很少使用。
+
+**示例：**
+
+```cpp
+void foo() {
+    register int count = 0;
+    for (int i = 0; i < 1000000; ++i) {
+        count += i;
+    }
+    std::cout << count << std::endl;
+}
+```
+
+在这个例子中，`count` 被建议存储在寄存器中以提高循环的执行速度。
+
+### 62. `reinterpret_cast`
+
+`reinterpret_cast` 关键字用于在不同类型的指针之间进行**强制转换**，通常用于底层的内存操作。这种转换是非常低级的操作，可能会引起未定义行为，因此应谨慎使用。
+
+**示例：**
+
+```cpp
+int main() {
+    int a = 65;
+    char* ch = reinterpret_cast<char*>(&a);
+    std::cout << *ch << std::endl; // 输出 'A'
+    return 0;
+}
+```
+
+在这个例子中，`reinterpret_cast` 将指向整数的指针转换为指向字符的指针。
+
+### 63. `requires`
+
+`requires` 关键字用于在C++20中定义概念（concept），概念是对模板参数进行约束的规则。
+
+**示例：**
+
+```cpp
+template <typename T>
+concept Addable = requires(T a, T b) {
+    { a + b } -> std::convertible_to<T>;
+};
+template <Addable T>
+T add(T a, T b) {
+    return a + b;
+}
+int main() {
+    std::cout << add(1, 2) << std::endl; // 正确，int 符合 Addable 概念
+    // std::cout << add("a", "b") << std::endl; // 错误，字符串不符合 Addable 概念
+    return 0;
+}
+```
+
+在这个例子中，`Addable` 概念约束模板参数必须支持加法操作。
+
+### 64. `return`
+
+`return` 关键字用于从函数中返回值，并终止函数的执行。
+
+**示例：**
+
+```cpp
+int add(int a, int b) {
+    return a + b;
+}
+int main() {
+    int sum = add(3, 4);
+    std::cout << sum << std::endl; // 输出 7
+    return 0;
+}
+```
+
+在这个例子中，`return` 关键字用于从 `add` 函数中返回两个整数的和。
+
+### 65. `short`
+
+`short` 关键字用于声明短整型变量，通常占用2个字节的内存空间。
+
+**示例：**
+
+```cpp
+int main() {
+    short s = 32767;
+    std::cout << s << std::endl; // 输出 32767
+    return 0;
+}
+```
+
+在这个例子中，`short` 关键字用于声明一个短整型变量。
+
+### 66. `signed`
+
+`signed` 关键字用于声明有符号类型的变量，默认情况下整数类型是有符号的。
+
+**示例：**
+
+```cpp
+int main() {
+    signed int a = -10;
+    std::cout << a << std::endl; // 输出 -10
+    return 0;
+}
+```
+
+在这个例子中，`signed` 关键字用于声明一个有符号的整数变量。
+
+### 67. `sizeof`
+
+`sizeof` 关键字用于计算类型或变量的大小，以字节为单位。
+
+**示例：**
+
+```cpp
+int main() {
+    int a;
+    std::cout << "Size of int: " << sizeof(int) << " bytes" << std::endl;
+    std::cout << "Size of a: " << sizeof(a) << " bytes" << std::endl;
+    std::cout << "Size of a: " << sizeof a << " bytes" << std::endl;//因为sizeof是关键字
+    return 0;
+}
+```
+
+在这个例子中，`sizeof` 关键字用于计算 `int` 类型和变量 `a` 的大小。
+
+### 68. `static`
+
+`static` 关键字用于声明静态变量或静态成员。静态变量在**程序的生命周期内保持其值**，而**静态成员属于类本身而不是类的实例**。
+
+**示例：**
+
+```cpp
+#include <iostream>
+void counter() {
+    static int count = 0;
+    count++;
+    std::cout << count << std::endl;
+}
+int main() {
+    counter(); // 输出 1
+    counter(); // 输出 2
+    counter(); // 输出 3
+    return 0;
+}
+```
+
+在这个例子中，`static` 关键字用于声明静态变量 `count`，该变量在函数 `counter` 的多次调用之间保持其值。
+
+### 69. `static_assert`
+
+`static_assert` 关键字用于在**编译时进行断言检查**，如果条件为假则产生编译错误。
+
+**示例：**
+
+```cpp
+static_assert(sizeof(int) == 4, "int size is not 4 bytes");
+
+int main() {
+    return 0;
+}
+```
+
+在这个例子中，`static_assert` 用于检查 `int` 类型的大小是否为 4 个字节，如果条件不满足则编译失败并输出错误信息。
+
+### 70. `static_cast`
+
+`static_cast` 关键字用于执行**显式类型转换**，通常用于基类和派生类之间的转换以及基本类型之间的转换。
+
+**示例：**
+
+```cpp
+int main() {
+    double d = 3.14;
+    int a = static_cast<int>(d); // 将 double 转换为 int
+    std::cout << a << std::endl; // 输出 3
+    return 0;
+}
+```
+
+在这个例子中，`static_cast` 用于将 `double` 类型转换为 `int` 类型。
+
+### 71. `struct`
+
+`struct` 关键字用于定义一个结构体，结构体是一种用户自定义的数据类型，包含多个成员。
+
+**示例：**
+
+```cpp
+struct Point {
+    int x;
+    int y;
+};
+int main() {
+    Point p = {3, 4};
+    std::cout << "Point: (" << p.x << ", " << p.y << ")" << std::endl; // 输出 Point: (3, 4)
+    return 0;
+}
+```
+
+在这个例子中，`struct` 关键字用于定义一个 `Point` 结构体，包含两个成员 `x` 和 `y`。
+
+### 72. `switch`
+
+`switch` 关键字用于实现多分支选择语句，根据表达式的值选择执行不同的分支。
+
+**示例：**
+
+```cpp
+int main() {
+    int value = 2;
+    switch (value) {
+        case 1:
+            std::cout << "Value is 1" << std::endl;
+            break;
+        case 2:
+            std::cout << "Value is 2" << std::endl;
+            break;
+        case 3:
+            std::cout << "Value is 3" << std::endl;
+            break;
+        default:
+            std::cout << "Value is unknown" << std::endl;
+            break;
+    }
+    return 0;
+}
+```
+
+在这个例子中，`switch` 语句根据 `value` 的值选择执行不同的 `case` 分支。
+
+### 73. `template`
+
+`template` 关键字用于定义模板，这允许函数和类处理不同的数据类型。模板可以是函数模板或类模板。
+
+**示例：**
+
+```cpp
+template <typename T>
+T add(T a, T b) {
+    return a + b;
+}
+int main() {
+    std::cout << add(1, 2) << std::endl;       // 输出 3
+    std::cout << add(1.1, 2.2) << std::endl;   // 输出 3.3
+    return 0;
+}
+```
+
+在这个例子中，`template` 关键字用于定义一个函数模板 `add`，该函数可以处理不同类型的加法操作。
+
+### 74. `this`
+
+`this` 关键字是一个指针，指向调用成员函数的对象实例。它在类的非静态成员函数中可用。
+
+**示例：**
+
+```cpp
+class MyClass {
+    int value;
+public:
+    MyClass(int value) : value(value) {}
+    void printValue() {
+        std::cout << "Value: " << this->value << std::endl;
+    }
+};
+int main() {
+    MyClass obj(10);
+    obj.printValue();  // 输出 Value: 10
+    return 0;
+}
+```
+
+在这个例子中，`this` 关键字用于访问对象的成员变量 `value`。
+
+### 75. `thread_local`
+
+`thread_local` 关键字用于声明**线程局部存储变量**，每个线程都有该变量的**独立实例**。常用于多线程编程中。
+
+**示例：**
+
+```cpp
+#include <iostream>
+#include <thread>
+thread_local int counter = 0;
+void incrementCounter() {
+    ++counter;
+    std::cout << "Counter: " << counter << std::endl;
+}
+int main() {
+    std::thread t1(incrementCounter);
+    std::thread t2(incrementCounter);
+    t1.join();
+    t2.join();
+    return 0;
+}
+/*
+Counter: 1
+Counter: 1
+*/
+```
+
+在这个例子中，`thread_local` 关键字声明的 `counter` 变量对于每个线程是独立的。
+
+### 76. `throw`
+
+`throw` 关键字用于抛出异常。异常可以是任何类型，但通常是类或结构体的实例。
+
+**示例：**
+
+```cpp
+#include <iostream>
+#include <stdexcept>
+void mightGoWrong() {
+    bool error = true;
+    if (error) {
+        throw std::runtime_error("Something went wrong!");
+    }
+}
+int main() {
+    try {
+        mightGoWrong();
+    } catch (const std::exception& e) {
+        std::cout << "Caught exception: " << e.what() << std::endl;
+    }
+    return 0;
+}
+```
+
+在这个例子中，`throw` 关键字用于抛出一个 `std::runtime_error` 异常。
+
+### 77. `true`
+
+`true` 关键字表示布尔类型的真值。在条件判断和布尔运算中使用。
+
+**示例：**
+
+```cpp
+int main() {
+    bool flag = true;
+    if (flag) {
+        std::cout << "Flag is true" << std::endl;
+    }
+    return 0;
+}
+```
+
+在这个例子中，`true` 关键字用于将 `flag` 变量设置为真值。
+
+### 78. `try`
+
+`try` 关键字用于定义一个异常处理块，后跟一个或多个 `catch` 块来捕获和处理异常。
+
+**示例：**
+
+```cpp
+#include <iostream>
+#include <stdexcept>
+void mightGoWrong() {
+    throw std::runtime_error("Something went wrong!");
+}
+int main() {
+    try {
+        mightGoWrong();
+    } catch (const std::exception& e) {
+        std::cout << "Caught exception: " << e.what() << std::endl;
+    }
+    return 0;
+}
+```
+
+在这个例子中，`try` 关键字用于包围可能抛出异常的代码。
+
+### 79. `typedef`
+
+`typedef` 关键字用于为现有类型定义一个新的名字，简化代码书写和提高代码可读性。
+
+**示例：**
+
+```cpp
+typedef unsigned long ulong;
+int main() {
+    ulong bigNumber = 123456789;
+    std::cout << "Big number: " << bigNumber << std::endl;
+    return 0;
+}
+```
+
+在这个例子中，`typedef` 关键字用于定义 `unsigned long` 类型的新名字 `ulong`。
+
+### 80. `typeid`
+
+`typeid` 关键字用于获取表达式或类型的类型信息，在**运行时**识别对象类型。它返回一个 `std::type_info` 对象。
+
+**示例：**
+
+```cpp
+#include <iostream>
+#include <typeinfo>
+int main() {
+    int a = 10;
+    std::cout << "Type of a: " << typeid(a).name() << std::endl;
+    double b = 10.5;
+    std::cout << "Type of b: " << typeid(b).name() << std::endl;
+    return 0;
+}
+```
+
+在这个例子中，`typeid` 关键字用于获取变量 `a` 和 `b` 的类型信息。
+
+### 81. `typename`
+
+`typename` 关键字用于在模板定义中声明类型参数或在模板内使用嵌套依赖类型。
+
+**示例：**
+
+```cpp
+template <typename T>
+class MyClass {
+public:
+    typename T::value_type getValue(const T& container) {
+        return container[0];
+    }
+};
+
+int main() {
+    std::vector<int> vec = {1, 2, 3};
+    MyClass<std::vector<int>> obj;
+    std::cout << "Value: " << obj.getValue(vec) << std::endl;  // 输出 1
+    return 0;
+}
+```
+
+在这个例子中，`typename` 关键字用于声明嵌套依赖类型 `T::value_type`。
+
+### 82. `union`
+
+`union` 关键字用于定义一种特殊的数据结构，它允许在同一内存位置存储不同的数据类型。`union` 中所有成员**共享同一块内存**，用于节省内存空间。
+
+**示例：**
+
+```cpp
+union MyUnion {
+    int intValue;
+    float floatValue;
+};
+
+int main() {
+    MyUnion u;
+    u.intValue = 10;
+    std::cout << "Int value: " << u.intValue << std::endl;
+    u.floatValue = 3.14f;
+    std::cout << "Float value: " << u.floatValue << std::endl;
+    std::cout << "Int value after float assignment: " << u.intValue << std::endl;
+    return 0;
+}
+```
+
+在这个例子中，`union` 关键字用于定义一个联合 `MyUnion`，它可以存储 `int` 或 `float` 类型的值。
+
+### 83. `unsigned`
+
+`unsigned` 关键字用于声明无符号整数类型，表示**不允许存储负数**的整数。
+
+**示例：**
+
+```cpp
+int main() {
+    unsigned int num = 10;
+    std::cout << "Unsigned number: " << num << std::endl;
+    return 0;
+}
+```
+
+在这个例子中，`unsigned` 关键字用于声明一个无符号整数变量 `num`。
+
+### 84. `using` 声明
+
+`using` 声明用于引入命名空间的单个成员或模板实例到当前作用域，以避免完整的命名空间或类型名。
+
+**示例：**
+
+```cpp
+#include <iostream>
+
+namespace First {
+    void printMessage() {
+        std::cout << "Hello from First namespace" << std::endl;
+    }
+}
+
+int main() {
+    using First::printMessage;
+    printMessage(); // 调用 First 命名空间中的 printMessage 函数
+    return 0;
+}
+```
+
+在这个例子中，`using` 声明用于引入 `First` 命名空间中的 `printMessage` 函数到 `main` 函数的作用域中。
+
+### 85. `using` 指令
+
+`using` 指令用于引入整个命名空间或模板的内容到当前作用域，使得命名空间中的所有成员都可用。
+
+**示例：**
+
+```cpp
+#include <iostream>
+
+namespace First {
+    void printMessage() {
+        std::cout << "Hello from First namespace" << std::endl;
+    }
+}
+
+int main() {
+    using namespace First;
+    printMessage(); // 直接调用 First 命名空间中的 printMessage 函数
+    return 0;
+}
+```
+
+在这个例子中，`using` 指令用于将整个 `First` 命名空间引入到 `main` 函数的作用域中。
+
+`using` 关键字还可以用于为类型定义别名。这种用法在C++11中引入，被认为是`typedef`的现代替代方法。它提供了更好的语法，尤其是在定义模板别名时。
+
+**`using` 用于类型别名**
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <map>
+// 使用 using 为现有类型定义别名
+using Integer = int;
+using IntVector = std::vector<int>;
+using StringIntMap = std::map<std::string, int>;
+int main() {
+    Integer a = 10;
+    IntVector vec = {1, 2, 3, 4, 5};
+    StringIntMap myMap = { {"one", 1}, {"two", 2}, {"three", 3} };
+
+    std::cout << "Integer a: " << a << std::endl;
+
+    std::cout << "IntVector vec: ";
+    for(const auto& val : vec) {
+        std::cout << val << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "StringIntMap myMap: ";
+    for(const auto& pair : myMap) {
+        std::cout << "{" << pair.first << ": " << pair.second << "} ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+```
+
+在这个例子中，`using` 关键字用于创建以下类型别名：
+
+- `Integer` 作为 `int` 类型的别名
+- `IntVector` 作为 `std::vector<int>` 类型的别名
+- `StringIntMap` 作为 `std::map<std::string, int>` 类型的别名
+
+这种语法更直观，尤其是在处理复杂类型时，如模板类型。
+
+**`using` 用于模板别名**
+
+```cpp
+#include <iostream>
+#include <map>
+#include <string>
+// 使用 using 为模板类型定义别名
+template<typename T>
+using StringMap = std::map<std::string, T>;
+int main() {
+    StringMap<int> myMap = { {"one", 1}, {"two", 2}, {"three", 3} };
+    std::cout << "StringMap<int> myMap: ";
+    for(const auto& pair : myMap) {
+        std::cout << "{" << pair.first << ": " << pair.second << "} ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
+```
+
+在这个例子中，`using` 关键字用于为模板类型 `std::map<std::string, T>` 定义别名 `StringMap`。这使得代码更简洁且易于阅读。
+
+### 86. `virtual`
+
+`virtual` 关键字用于**声明虚函数，用于实现多态性**。它允许派生类重写（覆盖）基类的成员函数，根据对象的实际类型调用正确的函数版本。
+
+**示例：**
+
+```cpp
+class Base {
+public:
+    virtual void display() {
+        std::cout << "Base class display" << std::endl;
+    }
+};
+class Derived : public Base {
+public:
+    void display() override {
+        std::cout << "Derived class display" << std::endl;
+    }
+};
+int main() {
+    Base* basePtr = new Derived();
+    basePtr->display(); // 输出 Derived class display
+    delete basePtr;
+    return 0;
+}
+```
+
+在这个例子中，`virtual` 关键字用于声明 `display` 函数为虚函数，使得派生类 `Derived` 中的 `display` 函数能够覆盖基类 `Base` 中的同名函数。
+
+### 87. `void`
+
+`void` 关键字用于标识函数没有返回值，或指针没有特定类型的数据。
+
+**示例：**
+
+```cpp
+void printMessage() {
+    std::cout << "Hello, World!" << std::endl;
+}
+int main() {
+    printMessage();
+    return 0;
+}
+```
+
+在这个例子中，`void` 关键字用于声明 `printMessage` 函数没有返回值。
+
+### 88. `volatile`
+
+`volatile` 关键字用于告诉编译器，**变量的值可能在外部发生改变**，因此编译器不应该对这些变量的读取和写入进行优化，简而言之，**不优化**。
+
+**示例：**
+
+```cpp
+#include <iostream>
+
+int main() {
+    volatile int value = 10;
+    while (value == 10) {
+        // 做一些处理
+    }
+    std::cout << "Value changed!" << std::endl;
+    return 0;
+}
+```
+
+在这个例子中，`volatile` 关键字用于声明 `value` 变量可能会被外部改变，因此编译器不应该优化对它的访问。
+
+### 89. `wchar_t`
+
+`wchar_t` 是C++中的一种数据类型，用于表示宽字符。宽字符通常用于表示需要多个字节的字符，适合表示国际化字符集（如Unicode）。`wchar_t` 是一个整数类型，通常比 `char` 类型占用更多的存储空间（通常是2或4个字节）。它可以存储较大的字符集，如Unicode。在标准库中，宽字符对应的字符串处理函数以`wcs`为前缀，例如 `wcscpy`，`wcslen` 等。
+
+**示例：**
+
+```cpp
+#include <iostream>
+#include <cwchar> // 包含宽字符处理函数
+int main() {
+    wchar_t wideChar = L'你';
+    wchar_t wideStr[] = L"你好，世界";
+    std::wcout << L"单个宽字符: " << wideChar << std::endl;
+    std::wcout << L"宽字符字符串: " << wideStr << std::endl;
+    std::wcout << L"字符串长度: " << wcslen(wideStr) << std::endl;
+    return 0;
+}
+//对于字符的处理，最好还是使用原本的那些，宽字符，UTF8等等，在不同平台，不同编码集的综合情况下比较麻烦
+```
+
+在这个例子中，`wchar_t` 用于存储宽字符和宽字符字符串，并通过 `std::wcout` 输出。
+
+### 90. `while`
+
+`while` 是C++中的一种循环控制结构，用于在某个条件为真时重复执行一段代码。`while`循环在每次迭代开始时测试条件，如果条件为真，则执行循环体；否则，退出循环。
+
+**示例：**
+
+```cpp
+#include <iostream>
+int main() {
+    int count = 0;
+    while (count < 5) {
+        std::cout << "Count: " << count << std::endl;
+        ++count;
+    }
+    return 0;
+}
+```
+
+在这个例子中，`while`循环每次迭代时输出 `count` 的值，直到 `count` 不小于5为止。
+
+### 91. `xor(^)`
+
+`xor` 是C++中的一种位操作符，用于执行按位异或（exclusive OR , ^）运算。异或运算符在两个对应的二进制位不同的情况下结果为1，否则为0。
+
+**示例：**
+
+```cpp
+#include <iostream>
+int main() {
+    int a = 5; // 二进制：0101
+    int b = 3; // 二进制：0011
+    int result = a ^ b;
+    std::cout << "Result of " << a << " xor " << b << " is: " << result << std::endl; // 输出6，二进制：0110
+    return 0;
+}
+```
+
+在这个例子中，对 `a` 和 `b` 执行按位异或运算，结果为6。
+
+### 92. `xor_eq(^=)`
+
+`xor_eq` 是C++中的一种复合赋值操作符，用于执行按位异或并赋值。
+
+**示例：**
+
+```cpp
+#include <iostream>
+int main() {
+    int a = 5; // 二进制：0101
+    int b = 3; // 二进制：0011
+    a ^= b; // 等价于 a ^= b
+    std::cout << "Result of a xor_eq b is: " << a << std::endl; // 输出6，二进制：0110
+    return 0;
+}
+```
+
+在这个例子中，`xor_eq` 操作符对 `a` 执行按位异或并将结果赋值给 `a`，结果为6。
