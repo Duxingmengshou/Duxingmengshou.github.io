@@ -6,10 +6,10 @@ redirect_from:
   - /about/
   - /about.html
 ---
+{% include archive-single.html %}
 ---
 ## 基本信息
 - 姓名：甘劲搏
-- 电话：15827946607
 - 院校：湖北工业大学
 - 邮箱：gjb2574562636@outlook.com<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 duxingmengshou@gmail.com
